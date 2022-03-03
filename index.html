@@ -1,7 +1,40 @@
 # jlyle2
 # jlyle2.github.io
 <html>
+<head>
+  <script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="Xmv5HdAqW18K9h5EGwnwHjspIf4Sohwb";;analytics.SNIPPET_VERSION="4.15.3";
+  analytics.load("Xmv5HdAqW18K9h5EGwnwHjspIf4Sohwb");
+  analytics.page();
+  }}();
+</script>  
+ <script>
+  function sendSegmentIdentify(event)
+{
+event.preventDefault();
+console.log('identify');
+var result = analytics.identify({
+  email: document.getElementById("email").value,
+  firstName: 'Fourth',
+  lastName: 'Test',
+  company: 'Ambassador',
+  phone: '123-555-1234',
+  address: {
+    street: '1234 Test Rd.',
+    city: 'Wooster',
+    state: 'Ohio',
+    postalCode: '12345',
+    country: 'USA'
+  }
+})
+console.log(result);
+}
+  </script>
+   </head>
 <body>
-test
+<form onsubmit="sendSegmentIdentify(event)">
+  Email Address: <input id='email' type="text">
+  <input type="submit">
+</form>
 </body>
 </html>
