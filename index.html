@@ -11,21 +11,8 @@
 {
 event.preventDefault();
 console.log('identify');
-var result = analytics.identify({
-  email: document.getElementById("email").value,
-  firstName: 'Fourth',
-  lastName: 'Test',
-  company: 'Ambassador',
-  phone: '123-555-1234',
-  address: {
-    street: '1234 Test Rd.',
-    city: 'Wooster',
-    state: 'Ohio',
-    postalCode: '12345',
-    country: 'USA'
-  }
-})
-console.log(result);
+mbsy.identify({ email: 'user@example.com' }, { campaigns: 
+49477})
 }
   </script>
    </head>
