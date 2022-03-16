@@ -53,9 +53,9 @@ input[type=submit]:hover {
     `const form = document.getElementById('${formId}');`+
     `var mbsyFirstName; var mbsyLastName;\n var mbsyEmail;`+
     `const assignVariables = () ={`+
-    `mbsyFirstName = document.getElementById('${firstName}').value;`+ 
-    `mbsyLastName = document.getElementById('${lastName}').value;`+
-    `mbsyEmail = document.getElementById('${email}').value;`+
+    (firstName && `mbsyFirstName = document.getElementById('${firstName}').value;`)+ 
+    (lastName && `mbsyLastName = document.getElementById('${lastName}').value;`)+
+    (email && `mbsyEmail = document.getElementById('${email}').value;`)+
     `}`+
     `form.addEventListener('submit', assignVariables);<\/script>`);
   const result = document.getElementById('resultBlock');
