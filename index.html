@@ -1,28 +1,44 @@
 <html>
 <head>
+  <style>
+    .resultBlock{
+      background-color: LightGray,
+      padding:10px;
+    }
+  </style>
   <script>
-
-const options = {
-  method: 'POST',
-  headers: {Accept: 'application/json', 'Content-Type': 'application/json',  mode: 'no-cors'},
-  body: JSON.stringify({
-    is_deactivated: '0',
-    send_welcome_email: '0',
-    email: 'tester@testing.com',
-    set_groups: '1'
-  })
-};
-
-fetch('https://getambassador.com/api/v2/Jonatahantest/7c1d703bb441c1d2a4139654ce1c1849/json/ambassador/update', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+  var formId = document.querySelector('#formId').value;
+  var firstName = document.querySelector('#firstName').value;
+  var lastName = document.querySelector('#lastName').value;
+  var email = document.querySelector('#email').value;
+  const createVariables = () =>
+  {
+    
+    `<script>
+    const form = document.getElementById(${formId});
+    var mbsyFirstName;
+    var mbsyLastName;
+    var mbsyEmail;
+    const assignVariables = () =>
+    {
+    mbsyFirstName =  document.getElementById(${firstName}).value;
+    mbsyLastName =  document.getElementById(${lastName}).value;
+    mbsyEmail =  document.getElementById(${email}).value;
+    }
+    form.addEventListener('submit', assignVariables);
+    `
+  }
   </script>
    </head>
 <body>
-<form onsubmit="sendSegmentIdentify(event)">
-  Email Address: <input id='email' type="text">
+<form onsubmit="createVariables()">
+  <label for="formId">Form Id:</label><input id='formId' type="text"><br/>
+  <label for="firstName">First Name Field:</label><input id='firstName' type="text"><br/>
+  <label for="lastName">Last Name Field:</label><input id='lastName' type="text"><br/>
+   <label for="email">Email Address Field:</label><input id='email' type="text"><br/>
   <input type="submit">
 </form>
+<span class='resultBlock'>
+</span>
 </body>
 </html>
