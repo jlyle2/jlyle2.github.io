@@ -26,19 +26,7 @@
   const createVariables = () =>
   {
     
-    var resultText = `<script>
-    const form = document.getElementById(${formId});
-    var mbsyFirstName;
-    var mbsyLastName;
-    var mbsyEmail;
-    const assignVariables = () =>
-    {
-    mbsyFirstName =  document.getElementById(${firstName}).value;
-    mbsyLastName =  document.getElementById(${lastName}).value;
-    mbsyEmail =  document.getElementById(${email}).value;
-    }
-    form.addEventListener('submit', assignVariables);
-  </script>
+    var resultText = `&lt;script&gt;<br/>    const form = document.getElementById(${formId});<br/>    var mbsyFirstName;<br/>    var mbsyLastName;<br/>    var mbsyEmail;<br/>    const assignVariables = () =&gt;<br/>    {<br/>    mbsyFirstName =  document.getElementById(${firstName}).value;<br/>    mbsyLastName =  document.getElementById(${lastName}).value;<br/>    mbsyEmail =  document.getElementById(${email}).value;<br/>    }<br/>    form.addEventListener('submit', assignVariables);<br/>  &lt;/script&gt;
     `;
   const result = document.getElementById('resultBlock');
   result.textContent = resultText;
