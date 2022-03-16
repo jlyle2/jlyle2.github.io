@@ -49,12 +49,15 @@ input[type=submit]:hover {
     var lastName = document.getElementById('lastName').value;
     var email = document.getElementById('email').value;
     event.preventDefault();
-    var resultText = document.createTextNode(`<script> const form = document.getElementById('${formId}');
-    \nvar mbsyFirstName; var mbsyLastName;\n var mbsyEmail; 
-    \nconst assignVariables = () ={ mbsyFirstName = document.getElementById('${firstName}').value; 
-    \nmbsyLastName = document.getElementById('${lastName}').value; 
-    \nmbsyEmail = document.getElementById('${email}').value; } 
-    \nform.addEventListener('submit', assignVariables); <\/script>`);
+    var resultText = document.createTextNode(`<script>`+
+    `const form = document.getElementById('${formId}');`+
+    `var mbsyFirstName; var mbsyLastName;\n var mbsyEmail;`+
+    `const assignVariables = () ={`+
+    `mbsyFirstName = document.getElementById('${firstName}').value;`+ 
+    `mbsyLastName = document.getElementById('${lastName}').value;`+
+    `mbsyEmail = document.getElementById('${email}').value;`+
+    `}`+
+    `form.addEventListener('submit', assignVariables);<\/script>`);
   const result = document.getElementById('resultBlock');
   result.appendChild(resultText);
   }
