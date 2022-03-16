@@ -42,13 +42,12 @@ input[type=submit]:hover {
 <div id='resultBlock'></div>
 </body>
  <script>
-  var formId = document.getElementById('formId').value;
-  var firstName = document.getElementById('firstName').value;
-  var lastName = document.getElementById('lastName').value;
-  var email = document.getElementById('email').value;
   const createVariables = (event) =>
   {
-    console.log(formId);
+    var formId = document.getElementById('formId').value;
+    var firstName = document.getElementById('firstName').value;
+    var lastName = document.getElementById('lastName').value;
+    var email = document.getElementById('email').value;
     event.preventDefault();
     var resultText = document.createTextNode(`<script> const form = document.getElementById('${formId}');
     \nvar mbsyFirstName; var mbsyLastName;\n var mbsyEmail; 
