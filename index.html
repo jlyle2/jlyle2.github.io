@@ -42,18 +42,18 @@ input[type=submit]:hover {
 <div id='resultBlock'></div>
 </body>
  <script>
-  var formId = document.querySelector('#formId').value;
-  var firstName = document.querySelector('#firstName').value;
-  var lastName = document.querySelector('#lastName').value;
-  var email = document.querySelector('#email').value;
+  var formId = document.getElementById('formId').value;
+  var firstName = document.getElementById('firstName').value;
+  var lastName = document.getElementById('lastName').value;
+  var email = document.getElementById('email').value;
   const createVariables = (event) =>
   {
     event.preventDefault();
-    var resultText = document.createTextNode(`<script> const form = document.getElementById(${formId});
+    var resultText = document.createTextNode(`<script> const form = document.getElementById('${formId}');
     \nvar mbsyFirstName; var mbsyLastName;\n var mbsyEmail; 
-    \nconst assignVariables = () ={ mbsyFirstName = document.getElementById(${firstName}).value; 
-    \nmbsyLastName = document.getElementById(${lastName}).value; 
-    \nmbsyEmail = document.getElementById(${email}).value; } 
+    \nconst assignVariables = () ={ mbsyFirstName = document.getElementById('${firstName}').value; 
+    \nmbsyLastName = document.getElementById('${lastName}').value; 
+    \nmbsyEmail = document.getElementById('${email}').value; } 
     \nform.addEventListener('submit', assignVariables); <\/script>`);
   const result = document.getElementById('resultBlock');
   result.appendChild(resultText);
