@@ -48,6 +48,7 @@ input[type=submit]:hover {
   var email = document.getElementById('email').value;
   const createVariables = (event) =>
   {
+    console.log(formId);
     event.preventDefault();
     var resultText = document.createTextNode(`<script> const form = document.getElementById('${formId}');
     \nvar mbsyFirstName; var mbsyLastName;\n var mbsyEmail; 
