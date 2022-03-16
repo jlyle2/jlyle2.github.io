@@ -50,12 +50,9 @@ input[type=submit]:hover {
   const createVariables = (event) =>
   {
     event.preventDefault();
-    var resultText = `script const form = document.getElementById(${formId}); 
-    var mbsyFirstName; var mbsyLastName; 
-    var mbsyEmail; const assignVariables = () ={ mbsyFirstName = document.getElementById(${firstName}).value; 
-    mbsyLastName = document.getElementById(${lastName}).value; 
-    mbsyEmail = document.getElementById(${email}).value; } 
-    form.addEventListener('submit', assignVariables); /script`;
+    var resultText = `script const form = document.getElementById(${formId}); \n var mbsyFirstName; var mbsyLastName;\n var mbsyEmail; const assignVariables = () ={ mbsyFirstName = document.getElementById(${firstName}).value; \n mbsyLastName = document.getElementById(${lastName}).value; 
+    \n mbsyEmail = document.getElementById(${email}).value; } 
+    \n form.addEventListener('submit', assignVariables); /script`;
   const result = document.getElementById('resultBlock');
   result.textContent = resultText;
   }
