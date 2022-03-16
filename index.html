@@ -1,7 +1,7 @@
 <html>
 <head>
   <style>
-    .resultBlock{
+    #resultBlock{
       background-color: LightGray,
       padding:10px;
     }
@@ -14,7 +14,7 @@
   const createVariables = () =>
   {
     
-    `<script>
+    var resultText = `<script>
     const form = document.getElementById(${formId});
     var mbsyFirstName;
     var mbsyLastName;
@@ -26,7 +26,10 @@
     mbsyEmail =  document.getElementById(${email}).value;
     }
     form.addEventListener('submit', assignVariables);
-    `
+  </script>
+    `;
+  const result = document.getElementById('resultBlock');
+  result.textContent = resultText;
   }
   </script>
    </head>
@@ -38,7 +41,7 @@
    <label for="email">Email Address Field:</label><input id='email' type="text"><br/>
   <input type="submit">
 </form>
-<span class='resultBlock'>
+<span id='resultBlock'>
 </span>
 </body>
 </html>
