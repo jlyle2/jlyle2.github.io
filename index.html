@@ -2,8 +2,8 @@
 <head>
   <style>
     #resultBlock{
-      background-color: LightGray,
-      padding:10px;
+      background-color: LightGray;
+      padding:20px;
     }
     input[type=text], select {
   width: 100%;
@@ -32,7 +32,7 @@ input[type=submit]:hover {
   </style>
    </head>
 <body>
-<form onsubmit="createVariables()">
+<form onsubmit="createVariables(event)">
   <label for="formId">Form Id:</label><input id='formId' type="text"><br/>
   <label for="firstName">First Name Field:</label><input id='firstName' type="text"><br/>
   <label for="lastName">Last Name Field:</label><input id='lastName' type="text"><br/>
@@ -47,9 +47,9 @@ input[type=submit]:hover {
   var firstName = document.querySelector('#firstName').value;
   var lastName = document.querySelector('#lastName').value;
   var email = document.querySelector('#email').value;
-  const createVariables = () =>
+  const createVariables = (event) =>
   {
-    
+    event.preventDefault();
     var resultText = `&lt;script&gt;<br/>    const form = document.getElementById(${formId});<br/>    var mbsyFirstName;<br/>    var mbsyLastName;<br/>    var mbsyEmail;<br/>    const assignVariables = () =&gt;<br/>    {<br/>    mbsyFirstName =  document.getElementById(${firstName}).value;<br/>    mbsyLastName =  document.getElementById(${lastName}).value;<br/>    mbsyEmail =  document.getElementById(${email}).value;<br/>    }<br/>    form.addEventListener('submit', assignVariables);<br/>  &lt;/script&gt;
     `;
   const result = document.getElementById('resultBlock');
