@@ -6,7 +6,19 @@
       padding:10px;
     }
   </style>
-  <script>
+   </head>
+<body>
+<form onsubmit="createVariables()">
+  <label for="formId">Form Id:</label><input id='formId' type="text"><br/>
+  <label for="firstName">First Name Field:</label><input id='firstName' type="text"><br/>
+  <label for="lastName">Last Name Field:</label><input id='lastName' type="text"><br/>
+   <label for="email">Email Address Field:</label><input id='email' type="text"><br/>
+  <input type="submit">
+</form>
+<span id='resultBlock'>
+</span>
+</body>
+ <script>
   var formId = document.querySelector('#formId').value;
   var firstName = document.querySelector('#firstName').value;
   var lastName = document.querySelector('#lastName').value;
@@ -32,16 +44,4 @@
   result.textContent = resultText;
   }
   </script>
-   </head>
-<body>
-<form onsubmit="createVariables()">
-  <label for="formId">Form Id:</label><input id='formId' type="text"><br/>
-  <label for="firstName">First Name Field:</label><input id='firstName' type="text"><br/>
-  <label for="lastName">Last Name Field:</label><input id='lastName' type="text"><br/>
-   <label for="email">Email Address Field:</label><input id='email' type="text"><br/>
-  <input type="submit">
-</form>
-<span id='resultBlock'>
-</span>
-</body>
 </html>
