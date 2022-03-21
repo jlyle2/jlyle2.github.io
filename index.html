@@ -1,7 +1,7 @@
 <html>
 <head>
   <style>
-    #resultBlock{
+    .resultBlock{
       background-color: LightGray;
       padding:20px;
     }
@@ -37,11 +37,12 @@ input[type=submit]:hover {
   <label for="firstName">First Name Field:</label><input id='firstName' type="text"><br/>
   <label for="lastName">Last Name Field:</label><input id='lastName' type="text"><br/>
    <label for="email">Email Address Field:</label><input id='email' type="text"><br/>
-  <label for="saveInStorage">Save Values:</label><input id='email' type="checkbox"><br/>
-  <label> (Save values for conversion on another page)</label>
+  <label for="storage">Save Values: (Save values for conversion on another page)</label><input id='storage' type="checkbox"><br/>
   <input type="submit">
 </form>
-<div id='resultBlock'></div>
+<div id='variableCode' class='resultBlock'></div>
+<br/>
+<div id='storageCode' class='resultBlock'></div>
 </body>
  <script>
   const createVariables = (event) =>
@@ -50,17 +51,21 @@ input[type=submit]:hover {
     var firstName = document.getElementById('firstName').value;
     var lastName = document.getElementById('lastName').value;
     var email = document.getElementById('email').value;
+    var storage = document.getElementById('storage').value;
     event.preventDefault();
     var resultText = document.createTextNode(`<script>`+
     `const form = document.getElementById('${formId}');`+
     `var mbsyFirstName; var mbsyLastName;\n var mbsyEmail;`+
     `const assignVariables = () ={`+
-    (firstName && `mbsyFirstName = document.getElementById('${firstName}').value;`)+ 
+    (firstName && `mbsyFirstName = document.getElementById('${firstName}').value;`)+
+    (firstName && storage && `window.localStorage.setItem('mbsyFirstName','${firstName}');`)+ 
     (lastName && `mbsyLastName = document.getElementById('${lastName}').value;`)+
+    (lastName && storage && `window.localStorage.setItem('mbsyLastName','${lastName}');`)+ 
     (email && `mbsyEmail = document.getElementById('${email}').value;`)+
+    (email && storage && `window.localStorage.setItem('mbsyEmail','${email}');`)+ 
     `}`+
     `form.addEventListener('submit', assignVariables);<\/script>`);
-  const result = document.getElementById('resultBlock');
+  const result = document.getElementById('variableCode');
   result.appendChild(resultText);
   }
   </script>
