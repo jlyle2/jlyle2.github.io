@@ -68,13 +68,16 @@ input[type=submit]:hover {
     `form.addEventListener('submit', assignVariables);\n <\/script>`);
   const result = document.getElementById('variableCode');
   result.appendChild(resultText);
+  if(storage)
+  {
   var storageText = document.createTextNode(`<script>\n`+
                                            (firstName && `mbsyFirstName = window.localStorage.getItem('mbsyFirstName')\n`)+
                                            (lastName && `mbsyLastName = window.localStorage.getItem('mbsyLastName')\n`)+
                                            (lastName && `mbsyEmail = window.localStorage.getItem('mbsyEmail')\n`)+
                                             `<\/script>`);
   const storageSection = document.getElementById('storageCode');
-  storageText.appendChild(storageText);
+  storageSection.appendChild(storageText);
+  }
   }
   </script>
 </html>
