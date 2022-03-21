@@ -4,6 +4,7 @@
     .resultBlock{
       background-color: LightGray;
       padding:20px;
+      style="white-space: pre-wrap"
     }
     input[type=text], select {
   width: 100%;
@@ -59,11 +60,11 @@ input[type=submit]:hover {
     `var mbsyFirstName; var mbsyLastName;\n var mbsyEmail;`+
     `const assignVariables = () ={`+
     (firstName && `mbsyFirstName = document.getElementById('${firstName}').value;`)+
-    (firstName && storage && `window.localStorage.setItem('mbsyFirstName','${firstName}');`)+ 
+    (firstName && storage && `window.localStorage.setItem('mbsyFirstName',mbsyFirstName);`)+ 
     (lastName && `mbsyLastName = document.getElementById('${lastName}').value;`)+
-    (lastName && storage && `window.localStorage.setItem('mbsyLastName','${lastName}');`)+ 
+    (lastName && storage && `window.localStorage.setItem('mbsyLastName',mbsyLastName);`)+ 
     (email && `mbsyEmail = document.getElementById('${email}').value;`)+
-    (email && storage && `window.localStorage.setItem('mbsyEmail','${email}');`)+ 
+    (email && storage && `window.localStorage.setItem('mbsyEmail',mbsyEmail);`)+ 
     `}`+
     `form.addEventListener('submit', assignVariables);<\/script>`);
   const result = document.getElementById('variableCode');
