@@ -58,9 +58,9 @@ input[type=submit]:hover {
     var resultText = document.createTextNode(`<script>
     `+
     `const form = document.getElementById('${formId}');
-    `+
+    \n`+
     `var mbsyFirstName; var mbsyLastName;\n var mbsyEmail;
-    `+
+    \n`+
     `const assignVariables = () ={
     `+
     (firstName && `mbsyFirstName = document.getElementById('${firstName}').value;
