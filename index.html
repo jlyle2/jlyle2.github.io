@@ -55,32 +55,26 @@ input[type=submit]:hover {
     var email = document.getElementById('email').value;
     var storage = document.getElementById('storage').value;
     event.preventDefault();
-    var resultText = document.createTextNode(`<script>
-    `+
-    `const form = document.getElementById('${formId}');
-    \n`+
-    `var mbsyFirstName; var mbsyLastName;\n var mbsyEmail;
-    \n`+
-    `const assignVariables = () ={
-    `+
-    (firstName && `mbsyFirstName = document.getElementById('${firstName}').value;
-    `)+
-    (firstName && storage && `window.localStorage.setItem('mbsyFirstName',mbsyFirstName);
-    `)+ 
-    (lastName && `mbsyLastName = document.getElementById('${lastName}').value;
-    `)+
-    (lastName && storage && `window.localStorage.setItem('mbsyLastName',mbsyLastName);
-    `)+ 
-    (email && `mbsyEmail = document.getElementById('${email}').value;
-    `)+
-    (email && storage && `window.localStorage.setItem('mbsyEmail',mbsyEmail);
-    `)+ 
-    `}
-    `+
-    `form.addEventListener('submit', assignVariables);
-    <\/script>`);
+    var resultText = document.createTextNode(`<script>\n`+
+    `const form = document.getElementById('${formId}');\n`+
+    `var mbsyFirstName; var mbsyLastName;\n var mbsyEmail;\n`+
+    `const assignVariables = () ={\n`+
+    (firstName && `mbsyFirstName = document.getElementById('${firstName}').value;\n`)+
+    (firstName && storage && `window.localStorage.setItem('mbsyFirstName',mbsyFirstName);\n`)+ 
+    (lastName && `mbsyLastName = document.getElementById('${lastName}').value;\n`)+
+    (lastName && storage && `window.localStorage.setItem('mbsyLastName',mbsyLastName);\n`)+ 
+    (email && `mbsyEmail = document.getElementById('${email}').value;\n`)+
+    (email && storage && `window.localStorage.setItem('mbsyEmail',mbsyEmail);\n`)+`}\n`+
+    `form.addEventListener('submit', assignVariables);\n <\/script>`);
   const result = document.getElementById('variableCode');
   result.appendChild(resultText);
+  var storageText = document.createTextNode(`<script>\n`+
+                                           (firstName && `mbsyFirstName = window.localStorage.getItem('mbsyFirstName')\n`)+
+                                           (lastName && `mbsyLastName = window.localStorage.getItem('mbsyLastName')\n`)+
+                                           (lastName && `mbsyEmail = window.localStorage.getItem('mbsyEmail')\n`)+
+                                            `<\/script>`
+  const storageSection = document.getElementById('storageCode');
+  
   }
   </script>
 </html>
