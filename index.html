@@ -68,7 +68,7 @@ form{
     var firstName = document.getElementById('firstName').value;
     var lastName = document.getElementById('lastName').value;
     var email = document.getElementById('email').value;
-    var storage = document.getElementById('storage').value;
+    var storage = document.getElementById('storage').checked;
     event.preventDefault();
     var resultText = document.createTextNode(`<script>\n`+
     `const form = document.getElementById('${formId}');\n`+
