@@ -6,6 +6,10 @@
       padding:20px;
       white-space: pre-wrap;
     }
+    .hidden
+    {
+      visibility:hidden;
+    }
     input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -43,9 +47,9 @@ input[type=submit]:hover {
   <span>(Save values for conversion on another page)</span>
   <input type="submit">
 </form>
-<div id='variableCode' class='resultBlock'></div>
+<div id='variableCode' class='resultBlock hidden'></div>
 <br/>
-<div id='storageCode' class='resultBlock'></div>
+<div id='storageCode' class='resultBlock hidden'></div>
 </body>
  <script>
   const createVariables = (event) =>
@@ -69,8 +73,10 @@ input[type=submit]:hover {
     `form.addEventListener('submit', assignVariables);\n <\/script>`);
   const result = document.getElementById('variableCode');
   result.appendChild(resultText);
+  result.classList.remove("hidden");
   if(storage)
   {
+    
   var storageText = document.createTextNode(`<script>\n`+
                                            (firstName && `mbsyFirstName = window.localStorage.getItem('mbsyFirstName')\n`)+
                                            (lastName && `mbsyLastName = window.localStorage.getItem('mbsyLastName')\n`)+
@@ -78,6 +84,7 @@ input[type=submit]:hover {
                                             `<\/script>`);
   const storageSection = document.getElementById('storageCode');
   storageSection.appendChild(storageText);
+  storageSection.classList.remove("hidden");
   }
   }
   </script>
