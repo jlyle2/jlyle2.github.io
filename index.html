@@ -2,6 +2,23 @@
 <head>
   <script>(function (u, n, i, v, e, r, s, a, l) { u[r] = {}; u[r].uid = '748dcc9d-0232-4373-b4e1-4e0bacdede8c'; u[r].m = ['getReferrerInfo', 'identify', 'integrationsReady', 'on', 'ready', 'track']; u[r].queue = []; u[r].f = function(t) { return function() { var l = Array.prototype.slice.call(arguments); l.unshift(t); u[r].queue.push(l); return u[r].queue; }; }; for (var t = 0; t < u[r].m.length; t++) { l = u[r].m[t]; u[r][l] = u[r].f(l); } a = n.createElement(v); a.src = e + '/us-' + u[r].uid + '.js'; a.async = s; n.getElementsByTagName(i)[0].appendChild(a); })(window, document, 'head', 'script', 'https://cdn.getambassador.com', 'mbsy', true);</script>
   <script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="wtUwWGewLq5y6CHRZmX29BkxwcghEy94";;analytics.SNIPPET_VERSION="4.15.3";
+  analytics.load("wtUwWGewLq5y6CHRZmX29BkxwcghEy94");
+  analytics.page();
+  }}();
+    analytics.identify('', {
+  first_name: 'Test',
+  last_name: "Name",
+  email: 'testUser2@getambassador.com'
+});
+
+    analytics.track('Article Bookmarked', {
+  title: 'Snow Fall',
+  subtitle: 'The Avalanche at Tunnel Creek',
+  author: 'John Branch'
+});
+</script>
+  <script>
      mbsy.identify(
     {
     email: "testUser2@getambassador.com",
