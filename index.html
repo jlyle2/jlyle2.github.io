@@ -71,7 +71,7 @@
     }
 
     button {
-      background: #1a365d;
+      background: #8eafdd;
       color: 'black';
       border: none;
       padding: 14px 24px;
@@ -595,16 +595,16 @@
                 
                 <!-- Heart Rate Line -->
                 <path d="M50,200 
-                         C150,190 200,210 300,200 
-                         C400,190 450,210 550,200 
-                         C650,190 700,210 800,200
-                         L825,100 
-                         L850,300
-                         L950,300" 
-                      stroke="#e53e3e" 
-                      stroke-width="3" 
-                      fill="none"/>
-                
+                C150,190 200,210 300,200 
+                C400,190 450,210 550,200 
+                C650,190 700,210 800,200
+                C815,190 840,210 860,200 
+                L875,100 
+                L880,300
+                L950,300" 
+             stroke="#e53e3e" 
+             stroke-width="3" 
+             fill="none"/>
                 <!-- Time Labels -->
                 <text x="50" y="350" fill="#666" font-size="14">9:00</text>
                 <text x="300" y="350" fill="#666" font-size="14">11:00</text>
@@ -689,9 +689,8 @@
 
     function updatePinDisplay() {
   const display = document.getElementById('pin-display');
-  display.textContent = '*'.repeat(currentPin.length).padEnd(4, '*');
-  display.style.visibility = 'hidden';
-  setTimeout(() => display.style.visibility = 'visible', 0); // This forces the DOM to rerender
+  // Show the entered numbers and pad with '*' for any remaining spaces
+  display.textContent = currentPin + '*'.repeat(4 - currentPin.length);
 }
 
     function submitPin() {
