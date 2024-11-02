@@ -1,131 +1,401 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <script>(function (u, n, i, v, e, r, s, a, l) { u[r] = {}; u[r].uid = '748dcc9d-0232-4373-b4e1-4e0bacdede8c'; u[r].m = ['getReferrerInfo', 'identify', 'integrationsReady', 'on', 'ready', 'track']; u[r].queue = []; u[r].f = function(t) { return function() { var l = Array.prototype.slice.call(arguments); l.unshift(t); u[r].queue.push(l); return u[r].queue; }; }; for (var t = 0; t < u[r].m.length; t++) { l = u[r].m[t]; u[r][l] = u[r].f(l); } a = n.createElement(v); a.src = e + '/us-' + u[r].uid + '.js'; a.async = s; n.getElementsByTagName(i)[0].appendChild(a); })(window, document, 'head', 'script', 'https://cdn.getambassador.com', 'mbsy', true);</script>
-  <script>
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="wtUwWGewLq5y6CHRZmX29BkxwcghEy94";;analytics.SNIPPET_VERSION="4.15.3";
-  analytics.load("wtUwWGewLq5y6CHRZmX29BkxwcghEy94");
-  analytics.page();
-  }}();
-    analytics.identify('123', {
-  first_name: 'Test',
-  last_name: "Name",
-  email: 'testUser2@getambassador.com'
-});
-
-    analytics.track('Article Bookmarked', {
-  title: 'Snow Fall',
-  subtitle: 'The Avalanche at Tunnel Creek',
-  author: 'John Branch'
-});
-</script>
-  <script>
-     mbsy.identify(
-    {
-    email: "testUser2@getambassador.com",
-    firstName: "Test",
-    lastName: "User",
-    },
-    {
-    campaigns: 49294,
-    }
-    );
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    h2{
-      width:100%;
-      font-family: "Roboto";
-      padding:20px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 10px;
+      min-height: 100vh;
+    }
+
+    .portal-interface {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 15px;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .header {
+      border-bottom: 2px solid #1a365d;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    .portal-logo {
+      color: #1a365d;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .login-screen {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .login-form {
+      max-width: 300px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      background: #1a365d;
       color: white;
-      background-color: black;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 10px;
     }
-    .resultBlock{
-      background-color: LightGray;
-      padding:20px;
-      white-space: pre-wrap;
-    }
-    .hidden
-    {
-      visibility:hidden;
-    }
-    input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
 
-input[type=submit] {
-  width: 50%;
-  background-color: rgba(255,78,72,1.0);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    button:hover {
+      background: #2c4c7c;
+    }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-form{
-  width:30%;
+    .error-message {
+      color: #e53e3e;
+      margin-top: 10px;
+      display: none;
+      font-size: 14px;
+    }
+
+    .icon-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: #f8f9fa;
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-decoration: none;
+      color: #1a365d;
+      transition: transform 0.2s;
+    }
+
+    .app-icon:hover {
+      transform: scale(1.05);
+    }
+
+    .app-icon svg {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .app-icon span {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .back-button {
+      margin-bottom: 15px;
+      background: #f0f4f8;
+      color: #1a365d;
+    }
+
+    .back-button:hover {
+      background: #e2e8f0;
+    }
+
+    /* Email Styles */
+    .email-list {
+      list-style: none;
+    }
+
+    .email-item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+
+    .email-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .email-item.unread {
+      background-color: #f0f4f8;
+    }
+
+    .email-subject {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .email-preview {
+      color: #666;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .email-meta {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 3px;
+    }
+
+    /* Bank Styles */
+    .account-info {
+      color: #666;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .transactions {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .transactions th {
+      background: #f0f4f8;
+      padding: 10px;
+      text-align: left;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .transactions td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .amount {
+      font-family: monospace;
+      text-align: right;
+    }
+
+    .deposit {
+      color: #38a169;
+    }
+
+    .table-container {
+      position: relative;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media screen and (max-width: 600px) {
+      .portal-interface {
+        padding: 10px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      body {
+        padding: 0;
+      }
+
+      .app-icon {
+        width: 100px;
+        height: 100px;
+      }
+
+      .email-subject {
+        font-size: 14px;
+      }
+
+      .email-preview {
+        font-size: 13px;
+      }
+
+      .transactions th,
+      .transactions td {
+        padding: 8px;
+        font-size: 13px;
+      }
     }
   </style>
-   </head>
+</head>
 <body>
-<h2>Form Script Tool</h2>
-<form onsubmit="createVariables(event)">
-  <label for="formId">Form Id:</label><input id='formId' type="text"><br/>
-  <label for="firstName">First Name Field:</label><input id='firstName' type="text"><br/>
-  <label for="lastName">Last Name Field:</label><input id='lastName' type="text"><br/>
-   <label for="email">Email Address Field:</label><input id='email' type="text"><br/>
-  <label for="storage">Store Values:</label><input id='storage' type="checkbox"><br/>
-  <span>(Save values for conversion on another page)</span><br/>
-  <input type="submit">
-</form>
-<div id='variableCode' class='resultBlock hidden'></div>
-<br/>
-<div id='storageCode' class='resultBlock hidden'></div>
-</body>
- <script>
-  const createVariables = (event) =>
-  {
-    var formId = document.getElementById('formId').value;
-    var firstName = document.getElementById('firstName').value;
-    var lastName = document.getElementById('lastName').value;
-    var email = document.getElementById('email').value;
-    var storage = document.getElementById('storage').checked;
-    event.preventDefault();
-    var resultText = document.createTextNode(`<script>\n`+
-    `const form = document.getElementById('${formId}');\n`+
-    `var mbsyFirstName; var mbsyLastName;\n var mbsyEmail;\n`+
-    `const assignVariables = () ={\n`+
-    (firstName && `mbsyFirstName = document.getElementById('${firstName}').value;\n`)+
-    (firstName && storage && `window.localStorage.setItem('mbsyFirstName',mbsyFirstName);\n`)+ 
-    (lastName && `mbsyLastName = document.getElementById('${lastName}').value;\n`)+
-    (lastName && storage && `window.localStorage.setItem('mbsyLastName',mbsyLastName);\n`)+ 
-    (email && `mbsyEmail = document.getElementById('${email}').value;\n`)+
-    (email && storage && `window.localStorage.setItem('mbsyEmail',mbsyEmail);\n`)+`}\n`+
-    `form.addEventListener('submit', assignVariables);\n <\/script>`);
-  const result = document.getElementById('variableCode');
-  result.appendChild(resultText);
-  result.classList.remove("hidden");
-  if(storage)
-  {
-    
-  var storageText = document.createTextNode(`<script>\n`+
-                                           (firstName && `mbsyFirstName = window.localStorage.getItem('mbsyFirstName')\n`)+
-                                           (lastName && `mbsyLastName = window.localStorage.getItem('mbsyLastName')\n`)+
-                                           (lastName && `mbsyEmail = window.localStorage.getItem('mbsyEmail')\n`)+
-                                            `<\/script>`);
-  const storageSection = document.getElementById('storageCode');
-  storageSection.appendChild(storageText);
-  storageSection.classList.remove("hidden");
-  }
-  }
-  </script>
-</html>
+  <div class="portal-interface">
+    <div id="login-section" class="login-screen">
+      <div class="portal-logo" style="margin-bottom: 30px;">Marcus Chen's Portal</div>
+      <div class="login-form">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" value="marcus.chen" readonly>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="off">
+        </div>
+        <button onclick="checkPassword()">Login</button>
+        <div id="error-message" class="error-message">Incorrect password. Please try again.</div>
+      </div>
+    </div>
+
+    <div id="app-selection" class="hidden">
+      <div class="header">
+        <div class="portal-logo">Marcus Chen's Portal</div>
+      </div>
+      <div class="icon-grid">
+        <div class="app-icon" onclick="loadApp('email')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span>Email</span>
+        </div>
+        <div class="app-icon" onclick="loadApp('bank')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
+          </svg>
+          <span>Bank</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="email-app" class="hidden">
+      <button class="back-button" onclick="showAppSelection()">← Back to Apps</button>
+      <div class="header">
+        <div class="portal-logo">ConMail</div>
+      </div>
+      <ul class="email-list">
+        <li class="email-item unread">
+          <div class="email-meta">From: Benedict Featherfeet (marveltheories@videoshare.com) - Mar 2, 2024 8:15 AM</div>
+          <div class="email-subject">Need to meet before your announcement</div>
+          <div class="email-preview">Marcus - I know what you're planning to reveal at the convention. A genuine first-print Marvel artifact would change everything. We need to discuss this privately. Name your price. I can meet you at your authentication office during the 3:10 slot...</div>
+        </li>
+        <li class="email-item unread">
+          <div class="email-meta">From: Mia Figwhistle-Thompson (mia@figurecollector.net) - Mar 1, 2024 11:23 PM</div>
+          <div class="email-subject">About your special announcement</div>
+          <div class="email-preview">I've gone into serious debt building my collection, but what you're planning to reveal could change everything. My 3pm authentication appointment isn't just about my regular items. I have a business proposition that could benefit us both...</div>
+        </li>
+        <li class="email-item">
+          <div class="email-meta">From: Keith (katanakeith@animeimports.com) - Feb 28, 2024 10:17 PM</div>
+          <div class="email-subject">Re: Convention Bans</div>
+          <div class="email-preview">You actually did it. I can't believe you got me banned from AnimeExpo and ComicCon. All because I finally stood up to your extortion. My merchandise is LEGITIMATE. You've destroyed everything I've built. This isn't over...</div>
+        </li>
+        <li class="email-item">
+          <div class="email-meta">From: Petunia Codsworthingtonstein (petunia@gotcollectibles.com) - Feb 24, 2024 11:23 AM</div>
+          <div class="email-subject">Re: Spring Convention Authentication Fees</div>
+          <div class="email-preview">Marcus, this is getting ridiculous. Your "authentication fees" keep going up every convention. $8,000 now? My items are legitimate and you know it. I can't keep doing this forever. We need to talk at the next...</div>
+        </li>
+        <li class="email-item">
+          <div class="email-meta">From: Keith (katanakeith@animeimports.com) - Jan 15, 2024 9:17 AM</div>
+          <div class="email-subject">Re: Convention Authentication Fees</div>
+          <div class="email-preview">I'm done paying your "authentication fees." Three years of extortion is enough. My distributor paperwork proves my merchandise is real. Do what you want - I won't be sending any more payments. You can't keep getting away with this...</div>
+        </li>
+        <li class="email-item">
+          <div class="email-meta">From: updates@conventiondaily.com - Jan 10, 2024 3:15 PM</div>
+          <div class="email-subject">Latest Convention News & Updates!</div>
+          <div class="email-preview">Stay updated with the latest convention schedules, guest appearances, and more...</div>
+        </li>
+        <li class="email-item unread">
+          <div class="email-meta">From: Ford Effonefifty (cryptidhunter@paranormal.net) - Mar 1, 2024 3:33 AM</div>
+          <div class="email-subject">PROOF of Superhero Artifacts</div>
+          <div class="email-preview">I know you're planning to authenticate a real superhero artifact. I have evidence these items are actually cryptid-created. Meet me at your office. The world needs to know the truth about the connection between cryptids and...</div>
+        </li>
+        <li class="email-item">
+          <div class="email-meta">From: membership@authenticators-guild.org - Feb 10, 2024 11:05 AM</div>
+          <div class="email-subject">Annual Membership Renewal Notice</div>
+          <div class="email-preview">Your Authenticators Guild membership is due for renewal...</div>
+        </li>
+      </ul>
+    </div>
+
+    <div id="bank-app" class="hidden">
+      <button class="back-button" onclick="showAppSelection()">← Back to Apps</button>
+      <div class="header">
+        <div class="portal-logo">First National Bank</div>
+        <div class="account-info">
+          Account Name: Marcus Chen<br>
+          Account Number: ****8392<br>
+          Statement Period: January 2023 - June 2024
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="transactions">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jun 15, 2024</td>
+              <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
+              <td class="amount deposit">$8,392.00</td>
+            </tr>
+            <tr>
+              <td>Jun 15, 2024</td>
+              <td>PMT - COMICVERSE AUTHENTICATIONS</td>
+              <td class="amount deposit">$4,250.00</td>
+            </tr>
+            <tr>
+              <td>Feb 23, 2024</td>
+              <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
+              <td class="amount deposit">$3,400.00</td>
+            </tr>
+            <tr>
+              <td>Feb 23, 2024</td>
+              <td>PMT - HEROIC VENTURES MERCH</td>
+              <td class="amount deposit">$3,750.00</td>
+            </tr>
+            <tr>
+              <td>Dec 15, 2023</td>
+              <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
+              <td class="amount deposit">$9,200.00</td>
+            </tr>
+            <tr>
+              <td>Dec 15, 2023</td>
+              <td>PMT - KATANA KEITH'S ANIME IMPORTS</td>
+              <td class="amount deposit">$2,452.00</td>
+            </tr>
+            <tr>
+              <td>Dec 15, 2023</td>
+              <td>PMT - FANTASY FORGE COLLECTIBLES</td>
+              <t
