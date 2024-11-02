@@ -72,7 +72,7 @@
 
     button {
       background: #1a365d;
-      color: white;
+      color: 'black';
       border: none;
       padding: 14px 24px;
       border-radius: 8px;
@@ -313,6 +313,7 @@
       border: 1px solid #ddd;
       padding: 15px;
       border-radius: 8px;
+      color: 'black';
       font-size: 20px;
       cursor: pointer;
     }
@@ -687,9 +688,11 @@
     }
 
     function updatePinDisplay() {
-      const display = document.getElementById('pin-display');
-      display.textContent = '*'.repeat(currentPin.length).padEnd(4, '*');
-    }
+  const display = document.getElementById('pin-display');
+  display.textContent = '*'.repeat(currentPin.length).padEnd(4, '*');
+  display.style.visibility = 'hidden';
+  setTimeout(() => display.style.visibility = 'visible', 0); // This forces the DOM to rerender
+}
 
     function submitPin() {
       if (currentPin === correctPin) {
