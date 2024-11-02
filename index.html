@@ -225,6 +225,102 @@
       -webkit-overflow-scrolling: touch;
     }
 
+    .watch-interface {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .graph {
+      width: 100%;
+      height: 300px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .data-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .stat-box {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1a365d;
+    }
+
+    .time-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .time-btn {
+      background: #e2e8f0;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .time-btn.active {
+      background: #1a365d;
+      color: white;
+    }
+
+    /* PIN pad styles */
+    .pin-pad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 300px;
+      margin: 20px auto;
+    }
+
+    .pin-display {
+      grid-column: 1 / -1;
+      background: #f0f4f8;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .pin-button {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .pin-button:hover {
+      background: #f0f4f8;
+    }
+
     @media screen and (max-width: 600px) {
       .portal-interface {
         padding: 10px;
@@ -280,6 +376,7 @@
         <div class="portal-logo">Marcus Chen's Portal</div>
       </div>
       <div class="icon-grid">
+        <!-- Previous app icons remain -->
         <div class="app-icon" onclick="loadApp('email')">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -292,6 +389,16 @@
             <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
           </svg>
           <span>Bank</span>
+        </div>
+        <!-- New smart watch icon -->
+        <div class="app-icon" onclick="loadApp('watch')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="6" y="6" width="12" height="12" rx="2"/>
+            <path d="M16 2H8m8 20H8"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="12" y1="9" x2="12" y2="12"/>
+          </svg>
+          <span>Health Data</span>
         </div>
       </div>
     </div>
@@ -434,39 +541,171 @@
           </table>
         </div>
       </div>
+      <div id="watch-app" class="hidden">
+        <button class="back-button" onclick="showAppSelection()">← Back to Apps</button>
+        
+        <!-- PIN entry section -->
+        <div id="watch-pin-section">
+          <div class="header">
+            <div class="portal-logo">HealthTrack Pro</div>
+          </div>
+          <div style="text-align: center; margin: 20px 0;">Enter PIN to access health data</div>
+          <div class="pin-display" id="pin-display">****</div>
+          <div class="pin-pad">
+            <button class="pin-button" onclick="enterPin('1')">1</button>
+            <button class="pin-button" onclick="enterPin('2')">2</button>
+            <button class="pin-button" onclick="enterPin('3')">3</button>
+            <button class="pin-button" onclick="enterPin('4')">4</button>
+            <button class="pin-button" onclick="enterPin('5')">5</button>
+            <button class="pin-button" onclick="enterPin('6')">6</button>
+            <button class="pin-button" onclick="enterPin('7')">7</button>
+            <button class="pin-button" onclick="enterPin('8')">8</button>
+            <button class="pin-button" onclick="enterPin('9')">9</button>
+            <button class="pin-button" onclick="clearPin()">Clear</button>
+            <button class="pin-button" onclick="enterPin('0')">0</button>
+            <button class="pin-button" onclick="submitPin()">Enter</button>
+          </div>
+        </div>
+  
+        <!-- Watch data section (initially hidden) -->
+        <div id="watch-data-section" class="hidden">
+          <div class="header">
+            <div class="portal-logo">HealthTrack Pro</div>
+            <div class="user-info">
+              User: Marcus Chen<br>
+              Device: HealthTrack Watch Series 4<br>
+              Date: March 2, 2024
+            </div>
+          </div>
+  
+          <div class="watch-interface">
+            <div class="time-selector">
+              <button class="time-btn">24h</button>
+              <button class="time-btn active">Day</button>
+              <button class="time-btn">Hour</button>
+            </div>
+  
+            <div class="graph">
+              <svg viewBox="0 0 1000 400">
+                <!-- Grid Lines -->
+                <line x1="50" y1="100" x2="950" y2="100" stroke="#eee"/>
+                <line x1="50" y1="200" x2="950" y2="200" stroke="#eee"/>
+                <line x1="50" y1="300" x2="950" y2="300" stroke="#eee"/>
+                
+                <!-- Heart Rate Line -->
+                <path d="M50,200 
+                         C150,190 200,210 300,200 
+                         C400,190 450,210 550,200 
+                         C650,190 700,210 800,200
+                         L825,100 
+                         L850,300
+                         L950,300" 
+                      stroke="#e53e3e" 
+                      stroke-width="3" 
+                      fill="none"/>
+                
+                <!-- Time Labels -->
+                <text x="50" y="350" fill="#666" font-size="14">9:00</text>
+                <text x="300" y="350" fill="#666" font-size="14">11:00</text>
+                <text x="550" y="350" fill="#666" font-size="14">1:00</text>
+                <text x="800" y="350" fill="#666" font-size="14">3:00</text>
+                <text x="950" y="350" fill="#666" font-size="14">4:00</text>
+                
+                <!-- Signal Lost Marker -->
+                <text x="850" y="380" fill="#e53e3e" font-size="14" text-anchor="middle">Signal Lost 3:15 PM</text>
+              </svg>
+            </div>
+  
+            <div class="data-summary">
+              <div class="stat-box">
+                <div class="stat-label">Avg Heart Rate</div>
+                <div class="stat-value">72</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-label">Max Heart Rate</div>
+                <div class="stat-value">147</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-label">Last Reading</div>
+                <div class="stat-value">3:15</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
     </div>
   
     <script>
-      function checkPassword() {
-        const password = document.getElementById('password').value;
-        if (password === 'itisfake123') {
-          document.getElementById('login-section').classList.add('hidden');
-          document.getElementById('app-selection').classList.remove('hidden');
-        } else {
-          document.getElementById('error-message').style.display = 'block';
-        }
-      }
-  
-      function loadApp(app) {
-        document.getElementById('app-selection').classList.add('hidden');
-        if (app === 'email') {
-          document.getElementById('email-app').classList.remove('hidden');
-        } else if (app === 'bank') {
-          document.getElementById('bank-app').classList.remove('hidden');
-        }
-      }
-  
-      function showAppSelection() {
-        document.getElementById('email-app').classList.add('hidden');
-        document.getElementById('bank-app').classList.add('hidden');
+    let currentPin = '';
+    const correctPin = '1234';
+
+    function checkPassword() {
+      const password = document.getElementById('password').value;
+      if (password === 'itisfake123') {
+        document.getElementById('login-section').classList.add('hidden');
         document.getElementById('app-selection').classList.remove('hidden');
+      } else {
+        document.getElementById('error-message').style.display = 'block';
       }
-  
-      document.getElementById('password').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          checkPassword();
-        }
-      });
+    }
+
+    function loadApp(app) {
+      document.getElementById('app-selection').classList.add('hidden');
+      if (app === 'email') {
+        document.getElementById('email-app').classList.remove('hidden');
+      } else if (app === 'bank') {
+        document.getElementById('bank-app').classList.remove('hidden');
+      } else if (app === 'watch') {
+        document.getElementById('watch-app').classList.remove('hidden');
+        document.getElementById('watch-pin-section').classList.remove('hidden');
+        document.getElementById('watch-data-section').classList.add('hidden');
+      }
+    }
+
+    function showAppSelection() {
+      document.getElementById('email-app').classList.add('hidden');
+      document.getElementById('bank-app').classList.add('hidden');
+      document.getElementById('watch-app').classList.add('hidden');
+      document.getElementById('app-selection').classList.remove('hidden');
+      // Reset PIN when going back
+      currentPin = '';
+      document.getElementById('pin-display').textContent = '****';
+    }
+
+    function enterPin(digit) {
+      if (currentPin.length < 4) {
+        currentPin += digit;
+        updatePinDisplay();
+      }
+    }
+
+    function clearPin() {
+      currentPin = '';
+      updatePinDisplay();
+    }
+
+    function updatePinDisplay() {
+      const display = document.getElementById('pin-display');
+      display.textContent = '*'.repeat(currentPin.length).padEnd(4, '*');
+    }
+
+    function submitPin() {
+      if (currentPin === correctPin) {
+        document.getElementById('watch-pin-section').classList.add('hidden');
+        document.getElementById('watch-data-section').classList.remove('hidden');
+      } else {
+        alert('Incorrect PIN');
+        clearPin();
+      }
+    }
+
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
     </script>
   </body>
   </html>
