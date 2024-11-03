@@ -1,12 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    .schedule-header {
+      text-align: center;
+      border-bottom: 2px solid #1a365d;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .schedule-title {
+      color: #1a365d;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .schedule-subtitle {
+      color: #666;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    .schedule-details {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .appointment {
+      border-left: 4px solid #1a365d;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .appointment-time {
+      font-weight: bold;
+      color: #1a365d;
+      margin-bottom: 5px;
+    }
+
+    .appointment-details {
+      color: #444;
+      margin: 5px 0;
+    }
+
+    .special-event {
+      background: #1a365d;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .special-event h3 {
+      margin: 0 0 10px 0;
+    }
+
+    .special-event ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .note {
+      font-style: italic;
+      color: #666;
+      margin-top: 20px;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+    }
+
+    @media print {
+      body {
+        margin: 0;
+        padding: 10px;
+      }
+      
+      .schedule-details {
+        background: #fff;
+        box-shadow: none;
+      }
+      
+      .special-event {
+        background: #fff;
+        color: #1a365d;
+        border: 2px solid #1a365d;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Victim's Schedule</h1>
-    <p>Details about the schedule go here...</p>
+  <div class="schedule-header">
+    <h1 class="schedule-title">Authentication Station Schedule</h1>
+    <p class="schedule-subtitle">March 2, 2024</p>
+    <p class="schedule-subtitle">Special Authentication Hour</p>
+    <p class="schedule-subtitle">Marcus Chen</p>
+  </div>
+
+  <div class="schedule-details">
+    <div class="appointment">
+      <div class="appointment-time">3:00 - 3:10 PM</div>
+      <div class="appointment-details">
+        <strong>Appointment:</strong> Petunia Codsworthingtonstein<br>
+        <strong>Item:</strong> Game of Thrones collectibles review
+      </div>
+    </div>
+
+    <div class="appointment">
+      <div class="appointment-time">3:10 - 3:20 PM</div>
+      <div class="appointment-details">
+        <strong>Appointment:</strong> Mia Figwhistle-Thompson<br>
+        <strong>Item:</strong> Figure collection authentication
+      </div>
+    </div>
+
+    <div class="appointment">
+      <div class="appointment-time">3:20 - 3:30 PM</div>
+      <div class="appointment-details">
+        <strong>Status:</strong> AVAILABLE SLOT<br>
+        <strong>Note:</strong> Previous booking cancelled
+      </div>
+    </div>
+
+    <div class="appointment">
+      <div class="appointment-time">3:30 - 3:45 PM</div>
+      <div class="appointment-details">
+        <strong>Appointment:</strong> Benedict Featherfeet<br>
+        <strong>Item:</strong> Marvel memorabilia authentication
+      </div>
+    </div>
+
+    <div class="appointment">
+      <div class="appointment-time">3:45 - 4:00 PM</div>
+      <div class="appointment-details">
+        <strong>Appointment:</strong> Dr. Collin Oskopi<br>
+        <strong>Item:</strong> Medical collectibles verification
+      </div>
+    </div>
+
+    <div class="special-event">
+      <h3>4:15 PM - SPECIAL ANNOUNCEMENT</h3>
+      <strong>Location:</strong> Authentication Station
+      <ul>
+        <li>Revealing groundbreaking authentication discovery</li>
+        <li>All convention attendees welcome</li>
+        <li>Press invited</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    Note: All appointments are private, one-on-one consultations. Please arrive promptly at scheduled time.
+  </div>
 </body>
 </html>
