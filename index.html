@@ -1,723 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jonathan Lyle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 10px;
-      min-height: 100vh;
-    }
-
-    .portal-interface {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 15px;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .header {
-      border-bottom: 2px solid #1a365d;
-      padding-bottom: 15px;
-      margin-bottom: 15px;
-    }
-
-    .portal-logo {
-      color: #1a365d;
-      font-size: 20px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .login-screen {
-      text-align: center;
-      padding: 20px 10px;
-    }
-
-    .login-form {
-      max-width: 300px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .input-group {
-      margin-bottom: 15px;
-      text-align: left;
-    }
-
-    label {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background: #e9ecef; color: #333; line-height: 1.6; }
+    header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 80px 20px; text-align: center; color: #fff; }
+    header h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; margin: 20px 0 10px; }
+    header p { font-size: 1.25rem; }
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      margin: 0 auto 20px;
       display: block;
-      margin-bottom: 5px;
-      color: #444;
     }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      background: #8eafdd;
-      color: 'black';
-      border: none;
-      padding: 14px 24px;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background: #2c4c7c;
-    }
-
-    .error-message {
-      color: #e53e3e;
-      margin-top: 10px;
-      display: none;
-      font-size: 14px;
-    }
-
-    .icon-grid {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-      flex-wrap: wrap;
-    }
-
-    .app-icon {
-      width: 120px;
-      height: 120px;
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+    .container { max-width: 1200px; margin: 40px auto; padding: 20px; background: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.05); border-radius: 8px; }
+    section { margin-bottom: 60px; padding: 0 20px; }
+    section h2 { font-family: 'Montserrat', sans-serif; font-size: 2rem; color: #667eea; margin-bottom: 20px; position: relative; display: inline-block; }
+    section h2::after { content: ''; display: block; width: 50%; height: 3px; background: #667eea; margin-top: 5px; border-radius: 2px; }
+    .project-card {
       background: #f8f9fa;
-      border: 1px solid #ddd;
-      padding: 15px;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .project-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: #764ba2;
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+    .project-card p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+    .project-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #667eea;
+      color: #fff;
       text-decoration: none;
-      color: #1a365d;
-      transition: transform 0.2s;
+      border-radius: 4px;
+      transition: background 0.3s;
     }
-
-    .app-icon:hover {
-      transform: scale(1.05);
-    }
-
-    .app-icon svg {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 10px;
-    }
-
-    .app-icon span {
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .back-button {
-      margin-bottom: 15px;
-      background: #f0f4f8;
-      color: #1a365d;
-    }
-
-    .back-button:hover {
-      background: #e2e8f0;
-    }
-
-    /* Email Styles */
-    .email-list {
-      list-style: none;
-    }
-
-    .email-item {
-      padding: 15px;
-      border-bottom: 1px solid #eee;
-      cursor: pointer;
-    }
-
-    .email-item:hover {
-      background-color: #f8f9fa;
-    }
-
-    .email-item.unread {
-      background-color: #f0f4f8;
-    }
-
-    .email-subject {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .email-preview {
-      color: #666;
-      font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .email-meta {
-      font-size: 12px;
-      color: #888;
-      margin-bottom: 3px;
-    }
-
-    /* Bank Styles */
-    .account-info {
-      color: #666;
-      font-size: 14px;
-      margin: 10px 0;
-    }
-
-    .transactions {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-
-    .transactions th {
-      background: #f0f4f8;
-      padding: 10px;
-      text-align: left;
-      border-bottom: 2px solid #ddd;
-    }
-
-    .transactions td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .amount {
-      font-family: monospace;
-      text-align: right;
-    }
-
-    .deposit {
-      color: #38a169;
-    }
-
-    .table-container {
-      position: relative;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .watch-interface {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .graph {
-      width: 100%;
-      height: 300px;
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 20px;
-      position: relative;
-    }
-
-    .data-summary {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .stat-box {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 15px;
-      text-align: center;
-    }
-
-    .stat-label {
-      color: #666;
-      font-size: 12px;
-      margin-bottom: 5px;
-    }
-
-    .stat-value {
-      font-size: 24px;
-      font-weight: bold;
-      color: #1a365d;
-    }
-
-    .time-selector {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    .time-btn {
-      background: #e2e8f0;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .time-btn.active {
-      background: #1a365d;
-      color: white;
-    }
-
-    /* PIN pad styles */
-    .pin-pad {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      max-width: 300px;
-      margin: 20px auto;
-    }
-
-    .pin-display {
-      grid-column: 1 / -1;
-      background: #f0f4f8;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .pin-button {
-      background: #fff;
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 8px;
-      color: 'black';
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .pin-button:hover {
-      background: #f0f4f8;
-    }
-
-    @media screen and (max-width: 600px) {
-      .portal-interface {
-        padding: 10px;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      body {
-        padding: 0;
-      }
-
-      .app-icon {
-        width: 100px;
-        height: 100px;
-      }
-
-      .email-subject {
-        font-size: 14px;
-      }
-
-      .email-preview {
-        font-size: 13px;
-      }
-
-      .transactions th,
-      .transactions td {
-        padding: 8px;
-        font-size: 13px;
-      }
+    .btn:hover { background: #5a67d8; }
+    .resume-wrapper { overflow: hidden; border-radius: 8px; }
+    .resume-wrapper object { width: 100%; height: 800px; border: none; }
+    footer { background: #fff; padding: 20px; text-align: center; font-size: 0.9rem; color: #777; border-top: 1px solid #eaeaea; }
+    @media (max-width: 768px) {
+      .resume-wrapper object { height: 600px; }
+      header h1 { font-size: 2.5rem; }
+      .project-buttons { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="portal-interface">
-    <div id="login-section" class="login-screen">
-      <div class="portal-logo" style="margin-bottom: 30px;">Marcus Chen's Portal</div>
-      <div class="login-form">
-        <div class="input-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" value="marcus.chen" readonly>
-        </div>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" autocomplete="off">
-        </div>
-        <button onclick="checkPassword()">Login</button>
-        <div id="error-message" class="error-message">Incorrect password. Please try again.</div>
-      </div>
-    </div>
-
-    <div id="app-selection" class="hidden">
-      <div class="header">
-        <div class="portal-logo">Marcus Chen's Portal</div>
-      </div>
-      <div class="icon-grid">
-        <!-- Previous app icons remain -->
-        <div class="app-icon" onclick="loadApp('email')">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          <span>Email</span>
-        </div>
-        <div class="app-icon" onclick="loadApp('bank')">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
-          </svg>
-          <span>Bank</span>
-        </div>
-        <!-- New smart watch icon -->
-        <div class="app-icon" onclick="loadApp('watch')">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="6" y="6" width="12" height="12" rx="2"/>
-            <path d="M16 2H8m8 20H8"/>
-            <circle cx="12" cy="12" r="3"/>
-            <line x1="12" y1="9" x2="12" y2="12"/>
-          </svg>
-          <span>Health Data</span>
+  <header>
+    <img class="profile-photo" src="profile.jpg" alt="Jonathan Lyle">
+    <h1>Jonathan Lyle</h1>
+    <p>Software Engineer &amp; Creator</p>
+  </header>
+  <div class="container">
+    <section id="project">
+      <h2>Housemate Project</h2>
+      <div class="project-card">
+        <h3>Housemate</h3>
+        <p>A modern solution for smart living. Experience a fully responsive website paired with robust backend services.</p>
+        <div class="project-buttons">
+          <a class="btn" href="https://housemate.cloud/" target="_blank">Visit Website</a>
+          <a class="btn" href="https://gitfront.io/r/jlyle2/bzpoE8yxvYa6/HouseMate-Frontend/" target="_blank">Frontend Code</a>
+          <a class="btn" href="https://gitfront.io/r/jlyle2/2r8VJF9JoVYs/HouseMate-Services/" target="_blank">Services Code</a>
         </div>
       </div>
-    </div>
-
-    <div id="email-app" class="hidden">
-      <button class="back-button" onclick="showAppSelection()">← Back to Apps</button>
-      <div class="header">
-        <div class="portal-logo">ConMail</div>
+    </section>
+    <section id="about">
+      <h2>About</h2>
+      <div class="about">
+        <p>I am a Full Stack Software Engineer with extensive experience in building and optimizing scalable web applications. My work ranges from developing core features that enhance user engagement to leading teams in delivering high-impact solutions. I've worked with modern technologies including TypeScript, Kotlin, Node.js, and Python, and have a proven record in improving system performance and integrating innovative features like AI-powered data processing.</p>
       </div>
-      <ul class="email-list">
-        <li class="email-item unread">
-          <div class="email-meta">From: Benedict Featherfeet (marveltheories@videoshare.com) - Nov 2, 2024 1:15 PM</div>
-          <div class="email-subject">Need to meet before your announcement</div>
-          <div class="email-preview">Marcus - I know what you're planning to reveal at the convention. A genuine first-print Marvel artifact would change everything. We need to discuss this privately. Name your price. I can meet you at your authentication office during the 3:10 slot...</div>
-        </li>
-        <li class="email-item unread">
-          <div class="email-meta">From: Mia Figwhistle-Thompson (mia@figurecollector.net) - Nov 2, 2024 11:23 PM</div>
-          <div class="email-subject">About your special announcement</div>
-          <div class="email-preview">I've gone into serious debt building my collection, but what you're planning to reveal could change everything. My 3pm authentication appointment isn't just about my regular items. I have a business proposition that could benefit us both...</div>
-        </li>
-        <li class="email-item">
-          <div class="email-meta">From: Titania Toesock (historicalweapons@weaponacademia.com) - Nov 1, 2024 11:23 PM</div>
-          <div class="email-subject">I used to respect you</div>
-          <div class="email-preview">I actually looked up to you. Spent hours reading your authentication papers. Even cited you in my thesis on medieval weaponry authentication methods. But you're worse than the frauds who put katanas in medieval Europe. I have PROOF my weapons are historically accurate. Your "authentication fees" are nothing but extortion. Um Actually, what you're doing is illegal and...</div>
-        </li>
-        <li class="email-item">
-          <div class="email-meta">From: Keith (katanakeith@animeimports.com) - March 28, 2024 10:17 PM</div>
-          <div class="email-subject">Re: Convention Bans</div>
-          <div class="email-preview">You actually did it. I can't believe you got me banned from AnimeExpo and ComicCon. All because I finally stood up to your extortion. My merchandise is LEGITIMATE. You've destroyed everything I've built. This isn't over...</div>
-        </li>
-        <li class="email-item">
-          <div class="email-meta">From: Petunia Codsworthingtonstein (petunia@gotcollectibles.com) - Feb 24, 2024 11:23 AM</div>
-          <div class="email-subject">Re: Spring Convention Authentication Fees</div>
-          <div class="email-preview">Marcus, this is getting ridiculous. Your "authentication fees" keep going up every convention. $8,000 now? My items are legitimate and you know it. I can't keep doing this forever. We need to talk at the next...</div>
-        </li>
-        <li class="email-item">
-          <div class="email-meta">From: Keith (katanakeith@animeimports.com) - Jan 15, 2024 9:17 AM</div>
-          <div class="email-subject">Re: Convention Authentication Fees</div>
-          <div class="email-preview">I'm done paying your "authentication fees." Three years of extortion is enough. My distributor paperwork proves my merchandise is real. Do what you want - I won't be sending any more payments. You can't keep getting away with this...</div>
-        </li>
-        <li class="email-item">
-          <div class="email-meta">From: updates@conventiondaily.com - Jan 10, 2024 3:15 PM</div>
-          <div class="email-subject">Latest Convention News & Updates!</div>
-          <div class="email-preview">Stay updated with the latest convention schedules, guest appearances, and more...</div>
-        </li>
-        <li class="email-item unread">
-          <div class="email-meta">From: Ford Effonefifty (cryptidhunter@paranormal.net) - Mar 1, 2024 3:33 AM</div>
-          <div class="email-subject">PROOF of Superhero Artifacts</div>
-          <div class="email-preview">I know you're planning to authenticate a real superhero artifact. I have evidence these items are actually cryptid-created. Meet me at your office. The world needs to know the truth about the connection between cryptids and...</div>
-        </li>
-        <li class="email-item">
-          <div class="email-meta">From: membership@authenticators-guild.org - Feb 10, 2024 11:05 AM</div>
-          <div class="email-subject">Annual Membership Renewal Notice</div>
-          <div class="email-preview">Your Authenticators Guild membership is due for renewal...</div>
-        </li>
-      </ul>
-    </div>
-
-    <div id="bank-app" class="hidden">
-      <button class="back-button" onclick="showAppSelection()">← Back to Apps</button>
-      <div class="header">
-        <div class="portal-logo">First National Bank</div>
-        <div class="account-info">
-          Account Name: Marcus Chen<br>
-          Account Number: ****8392<br>
-          Statement Period: January 2023 - June 2024
-        </div>
+    </section>
+    <section id="resume">
+      <h2>Resume</h2>
+      <div class="resume-wrapper">
+        <object data="JonathanLyleResume.pdf" type="application/pdf">
+          <p>Your browser does not support embedded PDFs. <a href="JonathanLyleResume.pdf" target="_blank">Download the resume</a>.</p>
+        </object>
       </div>
-      <div class="table-container">
-        <table class="transactions">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nov 1, 2024</td>
-              <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
-              <td class="amount deposit">$3,000.00</td>
-            </tr>
-            <tr>
-              <td>Nov 1, 2024</td>
-              <td>PMT - TITANIA'S SHARP COLLECTIBLES LLC</td>
-              <td class="amount deposit">$500.00</td>
-            </tr>
-            <tr>
-              <td>Jun 15, 2024</td>
-              <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
-              <td class="amount deposit">$2,000.00</td>
-            </tr>
-            <tr>
-              <td>Jun 15, 2024</td>
-              <td>PMT - COMICVERSE AUTHENTICATIONS</td>
-              <td class="amount deposit">$1,000.00</td>
-            </tr>
-            <tr>
-              <td>Feb 23, 2024</td>
-              <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
-              <td class="amount deposit">$2,000.00</td>
-            </tr>
-            <tr>
-              <td>Feb 23, 2024</td>
-              <td>PMT - HEROIC VENTURES MERCH</td>
-              <td class="amount deposit">$2,000.00</td>
-            </tr>
-            <tr>
-              <td>Dec 15, 2023</td>
-              <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
-              <td class="amount deposit">$1,000.00</td>
-            </tr>
-            <tr>
-              <td>Dec 15, 2023</td>
-              <td>PMT - KATANA KEITH'S ANIME IMPORTS</td>
-              <td class="amount deposit">$1,500.00</td>
-            </tr>
-            <tr>
-                <td>Dec 15, 2023</td>
-                <td>PMT - FANTASY FORGE COLLECTIBLES</td>
-                <td class="amount deposit">$800.00</td>
-              </tr>
-              <tr>
-                <td>Sep 20, 2023</td>
-                <td>PMT - SUPER COLLECTIBLES INC</td>
-                <td class="amount deposit">$1,000.00</td>
-              </tr>
-              <tr>
-                <td>Jun 15, 2023</td>
-                <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
-                <td class="amount deposit">$500.00</td>
-              </tr>
-              <tr>
-                <td>Jun 15, 2023</td>
-                <td>PMT - KATANA KEITH'S ANIME IMPORTS</td>
-                <td class="amount deposit">$500.00</td>
-              </tr>
-              <tr>
-                <td>Mar 10, 2023</td>
-                <td>PMT - PETUNIA'S GOT COLLECTIBLES LLC</td>
-                <td class="amount deposit">$500.00</td>
-              </tr>
-              <tr>
-                <td>Mar 10, 2023</td>
-                <td>PMT - KATANA KEITH'S ANIME IMPORTS</td>
-                <td class="amount deposit">$500.00</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div id="watch-app" class="hidden">
-        <button class="back-button" onclick="showAppSelection()">← Back to Apps</button>
-        
-        <!-- PIN entry section -->
-        <div id="watch-pin-section">
-          <div class="header">
-            <div class="portal-logo">HealthTrack Pro</div>
-          </div>
-          <div style="text-align: center; margin: 20px 0;">Enter PIN to access health data</div>
-          <div class="pin-display" id="pin-display">****</div>
-          <div class="pin-pad">
-            <button class="pin-button" onclick="enterPin('1')">1</button>
-            <button class="pin-button" onclick="enterPin('2')">2</button>
-            <button class="pin-button" onclick="enterPin('3')">3</button>
-            <button class="pin-button" onclick="enterPin('4')">4</button>
-            <button class="pin-button" onclick="enterPin('5')">5</button>
-            <button class="pin-button" onclick="enterPin('6')">6</button>
-            <button class="pin-button" onclick="enterPin('7')">7</button>
-            <button class="pin-button" onclick="enterPin('8')">8</button>
-            <button class="pin-button" onclick="enterPin('9')">9</button>
-            <button class="pin-button" onclick="clearPin()">Clear</button>
-            <button class="pin-button" onclick="enterPin('0')">0</button>
-            <button class="pin-button" onclick="submitPin()">Enter</button>
-          </div>
-        </div>
-  
-        <!-- Watch data section (initially hidden) -->
-        <div id="watch-data-section" class="hidden">
-          <div class="header">
-            <div class="portal-logo">HealthTrack Pro</div>
-            <div class="user-info">
-              User: Marcus Chen<br>
-              Device: HealthTrack Watch Series 4<br>
-              Date: March 2, 2024
-            </div>
-          </div>
-  
-          <div class="watch-interface">
-            <div class="time-selector">
-              <button class="time-btn">24h</button>
-              <button class="time-btn active">Day</button>
-              <button class="time-btn">Hour</button>
-            </div>
-  
-            <div class="graph">
-              <svg viewBox="0 0 1000 400">
-                <!-- Grid Lines -->
-                <line x1="50" y1="100" x2="950" y2="100" stroke="#eee"/>
-                <line x1="50" y1="200" x2="950" y2="200" stroke="#eee"/>
-                <line x1="50" y1="300" x2="950" y2="300" stroke="#eee"/>
-                
-                <!-- Heart Rate Line -->
-                <path d="M50,200 
-                C150,190 200,210 300,200 
-                C400,190 450,210 550,200 
-                C650,190 700,210 800,200
-                C815,190 840,210 860,200 
-                L875,100 
-                L880,300
-                L950,300" 
-             stroke="#e53e3e" 
-             stroke-width="3" 
-             fill="none"/>
-                <!-- Time Labels -->
-                <text x="50" y="350" fill="#666" font-size="14">9:00</text>
-                <text x="300" y="350" fill="#666" font-size="14">11:00</text>
-                <text x="550" y="350" fill="#666" font-size="14">1:00</text>
-                <text x="800" y="350" fill="#666" font-size="14">3:00</text>
-                <text x="950" y="350" fill="#666" font-size="14">4:00</text>
-                
-                <!-- Signal Lost Marker -->
-                <text x="850" y="380" fill="#e53e3e" font-size="14" text-anchor="middle">Signal Lost 3:15 PM</text>
-              </svg>
-            </div>
-  
-            <div class="data-summary">
-              <div class="stat-box">
-                <div class="stat-label">Avg Heart Rate</div>
-                <div class="stat-value">72</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-label">Max Heart Rate</div>
-                <div class="stat-value">147</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-label">Last Reading</div>
-                <div class="stat-value">3:15</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    </div>
-  
-    <script>
-    let currentPin = '';
-    const correctPin = '1288';
-
-    function checkPassword() {
-      const password = document.getElementById('password').value;
-      if (password === 'cranberry') {
-        document.getElementById('login-section').classList.add('hidden');
-        document.getElementById('app-selection').classList.remove('hidden');
-      } else {
-        document.getElementById('error-message').style.display = 'block';
-      }
-    }
-
-    function loadApp(app) {
-      document.getElementById('app-selection').classList.add('hidden');
-      if (app === 'email') {
-        document.getElementById('email-app').classList.remove('hidden');
-      } else if (app === 'bank') {
-        document.getElementById('bank-app').classList.remove('hidden');
-      } else if (app === 'watch') {
-        document.getElementById('watch-app').classList.remove('hidden');
-        document.getElementById('watch-pin-section').classList.remove('hidden');
-        document.getElementById('watch-data-section').classList.add('hidden');
-      }
-    }
-
-    function showAppSelection() {
-      document.getElementById('email-app').classList.add('hidden');
-      document.getElementById('bank-app').classList.add('hidden');
-      document.getElementById('watch-app').classList.add('hidden');
-      document.getElementById('app-selection').classList.remove('hidden');
-      // Reset PIN when going back
-      currentPin = '';
-      document.getElementById('pin-display').textContent = '****';
-    }
-
-    function enterPin(digit) {
-      if (currentPin.length < 4) {
-        currentPin += digit;
-        updatePinDisplay();
-      }
-    }
-
-    function clearPin() {
-      currentPin = '';
-      updatePinDisplay();
-    }
-
-    function updatePinDisplay() {
-  const display = document.getElementById('pin-display');
-  // Show the entered numbers and pad with '*' for any remaining spaces
-  display.textContent = currentPin + '*'.repeat(4 - currentPin.length);
-}
-
-    function submitPin() {
-      if (currentPin === correctPin) {
-        document.getElementById('watch-pin-section').classList.add('hidden');
-        document.getElementById('watch-data-section').classList.remove('hidden');
-      } else {
-        alert('Incorrect PIN');
-        clearPin();
-      }
-    }
-
-    document.getElementById('password').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        checkPassword();
-      }
-    });
-    </script>
-  </body>
-  </html>
+    </section>
+  </div>
+  <footer>
+    &copy; 2025 Jonathan Lyle. All rights reserved.
+  </footer>
+</body>
+</html>
