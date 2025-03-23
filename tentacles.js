@@ -19,15 +19,17 @@ let mouseWaves = [];
 let previousMouseX = 0;
 let previousMouseY = 0;
 
-let natureX = 70;
-let natureY = 70;
+let natureX = 60;
+let natureY = 60;
 let natureAngle;
 
 let diameter = 40;
+let natureSpeed = 7;
 
 function setup() {
   frameRate(FRAME_RATE);
   diameter = getDiameter(windowWidth);
+  natureSpeed = getNatureSpeed(windowWidth);
   const headerHeight = document.querySelector("header").offsetHeight;
   const canvas = createCanvas(windowWidth, headerHeight);
   canvas.parent('p5-container');
@@ -39,6 +41,8 @@ function setup() {
 
 function windowResized() {
   diameter = getDiameter(windowWidth);
+  natureSpeed = getNatureSpeed(windowWidth);
+  console.log(natureSpeed)
   const headerHeight = document.querySelector("header").offsetHeight;
   resizeCanvas(windowWidth, headerHeight);
   initializeTentacles();
@@ -198,4 +202,8 @@ function getNeonColor(type) {
 
 function getDiameter(windowWidth){
     return Math.max(35, Math.min(60, windowWidth / 25))
+}
+
+function getNatureSpeed(windowWidth){
+    return Math.max(3, Math.min(7, windowWidth / 100))
 }
