@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jonathan Lyle</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400;500&display=swap"
+    rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; background: #e9ecef; color: #333; line-height: 1.6; }
-    header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 80px 20px; text-align: center; color: #fff; }
-    header h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; margin: 20px 0 10px; }
-    header p { font-size: 1.25rem; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e9ecef;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    #p5-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    header {
+      position: relative; /* required for z-index to apply */
+      z-index: 1;
+      background: linear-gradient(105deg, #667eea, #764ba263);
+      padding: 80px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin: 20px 0 10px;
+    }
+
+    header p {
+      font-size: 1.25rem;
+    }
+
     .profile-photo {
       width: 150px;
       height: 150px;
@@ -22,28 +62,67 @@
       margin: 0 auto 20px;
       display: block;
     }
-    .container { max-width: 1200px; margin: 40px auto; padding: 20px; background: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.05); border-radius: 8px; }
-    section { margin-bottom: 60px; padding: 0 20px; }
-    section h2 { font-family: 'Montserrat', sans-serif; font-size: 2rem; color: #667eea; margin-bottom: 20px; position: relative; display: inline-block; }
-    section h2::after { content: ''; display: block; width: 50%; height: 3px; background: #667eea; margin-top: 5px; border-radius: 2px; }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+
+    section {
+      margin-bottom: 60px;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      color: #667eea;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    section h2::after {
+      content: '';
+      display: block;
+      width: 50%;
+      height: 3px;
+      background: #667eea;
+      margin-top: 5px;
+      border-radius: 2px;
+    }
+
     .project-card {
       background: #f8f9fa;
       border-radius: 8px;
       padding: 30px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
+
     .project-card h3 {
       font-family: 'Montserrat', sans-serif;
       color: #764ba2;
       margin-bottom: 15px;
       font-size: 2rem;
     }
+
     .project-card p {
       font-size: 1.1rem;
       margin-bottom: 25px;
     }
-    .project-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+
+    .project-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
     .btn {
       display: inline-block;
       padding: 12px 25px;
@@ -53,47 +132,87 @@
       border-radius: 4px;
       transition: background 0.3s;
     }
-    .btn:hover { background: #5a67d8; }
-    .resume-wrapper { overflow: hidden; border-radius: 8px; }
-    .resume-wrapper object { width: 100%; height: 800px; border: none; }
-    footer { background: #fff; padding: 20px; text-align: center; font-size: 0.9rem; color: #777; border-top: 1px solid #eaeaea; }
+
+    .btn:hover {
+      background: #5a67d8;
+    }
+
+    .resume-wrapper {
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .resume-wrapper object {
+      width: 100%;
+      height: 800px;
+      border: none;
+    }
+
+    footer {
+      background: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #eaeaea;
+    }
+
     @media (max-width: 768px) {
-      .resume-wrapper object { height: 600px; }
-      header h1 { font-size: 2.5rem; }
-      .project-buttons { flex-direction: column; }
+      .resume-wrapper object {
+        height: 600px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .project-buttons {
+        flex-direction: column;
+      }
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
 </head>
+
 <body>
+  <div id="p5-container"></div>
   <header>
-    <img class="profile-photo" src="profile.jpg" alt="Jonathan Lyle">
-    <h1>Jonathan Lyle</h1>
-    <p>Software Engineer &amp; Creator</p>
+    <img class="profile-photo" src="profile.jpg" alt="Jonathan Lyle" style="position:relative; z-index:1;">
+    <h1 style="position:relative; z-index:1;">Jonathan Lyle</h1>
+    <p style="position:relative; z-index:1;">Software Engineer &amp; Creator</p>
   </header>
   <div class="container">
     <section id="project">
       <h2>Housemate Project</h2>
       <div class="project-card">
         <h3>Housemate</h3>
-        <p>A modern solution for smart living. Experience a fully responsive website paired with robust backend services.</p>
+        <p>A modern solution for smart living. Experience a fully responsive website paired with robust backend
+          services.</p>
         <div class="project-buttons">
           <a class="btn" href="https://housemate.cloud/" target="_blank">Visit Website</a>
-          <a class="btn" href="https://gitfront.io/r/jlyle2/bzpoE8yxvYa6/HouseMate-Frontend/" target="_blank">Frontend Code</a>
-          <a class="btn" href="https://gitfront.io/r/jlyle2/2r8VJF9JoVYs/HouseMate-Services/" target="_blank">Services Code</a>
+          <a class="btn" href="https://gitfront.io/r/jlyle2/bzpoE8yxvYa6/HouseMate-Frontend/" target="_blank">Frontend
+            Code</a>
+          <a class="btn" href="https://gitfront.io/r/jlyle2/2r8VJF9JoVYs/HouseMate-Services/" target="_blank">Services
+            Code</a>
         </div>
       </div>
     </section>
     <section id="about">
       <h2>About</h2>
       <div class="about">
-        <p>I am a Full Stack Software Engineer with extensive experience in building and optimizing scalable web applications. My work ranges from developing core features that enhance user engagement to leading teams in delivering high-impact solutions. I've worked with modern technologies including TypeScript, Kotlin, Node.js, and Python, and have a proven record in improving system performance and integrating innovative features like AI-powered data processing.</p>
+        <p>I am a Full Stack Software Engineer with extensive experience in building and optimizing scalable web
+          applications. My work ranges from developing core features that enhance user engagement to leading teams in
+          delivering high-impact solutions. I've worked with modern technologies including TypeScript, Kotlin, Node.js,
+          and Python, and have a proven record in improving system performance and integrating innovative features like
+          AI-powered data processing.</p>
       </div>
     </section>
     <section id="resume">
       <h2>Resume</h2>
       <div class="resume-wrapper">
         <object data="JonathanLyleResume.pdf" type="application/pdf">
-          <p>Your browser does not support embedded PDFs. <a href="JonathanLyleResume.pdf" target="_blank">Download the resume</a>.</p>
+          <p>Your browser does not support embedded PDFs. <a href="JonathanLyleResume.pdf" target="_blank">Download the
+              resume</a>.</p>
         </object>
       </div>
     </section>
@@ -101,5 +220,7 @@
   <footer>
     &copy; 2025 Jonathan Lyle. All rights reserved.
   </footer>
+  <script src="tentacles.js"></script>
 </body>
+
 </html>
