@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400;500&display=swap"
     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -106,9 +107,24 @@
       text-align: center;
     }
 
-    .project-card h3 {
-      font-family: 'Montserrat', sans-serif;
-      color: #764ba2;
+    .project-name
+    {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .project-name img
+    {
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      border-radius: 10%;
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+    .project-name h3 {
+      font-family:'Poppins', sans-serif;
+      color: #7D9BDA;
       margin-bottom: 15px;
       font-size: 2rem;
     }
@@ -188,7 +204,10 @@
     <section id="project">
       <h2>Featured Project</h2>
       <div class="project-card">
-        <h3>Housemate</h3>
+        <div class="project-name">
+          <img src="https://housemate.cloud/assets/logo.png" alt="HouseMate Logo" title="HouseMate" width="50" height="50"/>
+          <h3>Housemate</h3>
+        </div>
         <p>Housemate is a full-featured smart living app, designed and built from the ground up. It supports task management, roommate coordination, and background automation for recurring tasks.</p>
         <ul style="text-align: left; margin: 20px auto; max-width: 800px;">
           <li><strong>Role:</strong> Sole engineer — designed and built both frontend and backend systems</li>
