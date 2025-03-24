@@ -38,7 +38,7 @@
       position: relative;
       /* required for z-index to apply */
       z-index: 1;
-      background: linear-gradient(360deg, rgb(89, 107, 185),rgba(102, 126, 235, 0.347), #764ba263);
+      background: linear-gradient(360deg, rgb(89, 107, 185), rgba(102, 126, 235, 0.347), #764ba263);
       padding: 80px 20px;
       text-align: center;
       color: #fff;
@@ -104,11 +104,6 @@
       padding: 30px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .project-card:hover {
-      transform: scale(1.02);
     }
 
     .project-card h3 {
@@ -191,17 +186,24 @@
   </header>
   <div class="container">
     <section id="project">
-      <h2>Housemate Project</h2>
+      <h2>Featured Project</h2>
       <div class="project-card">
         <h3>Housemate</h3>
-        <p>A modern solution for smart living. Experience a fully responsive website paired with robust backend
-          services.</p>
+        <p>Housemate is a full-featured smart living app, designed and built from the ground up. It supports task management, roommate coordination, and background automation for recurring tasks.</p>
+        <ul style="text-align: left; margin: 20px auto; max-width: 800px;">
+          <li><strong>Role:</strong> Sole engineer — designed and built both frontend and backend systems</li>
+          <li><strong>Features:</strong> Push notifications, scheduled jobs, real-time data sync</li>
+        </ul>
         <div class="project-buttons">
           <a class="btn" href="https://housemate.cloud/" target="_blank">Visit Website</a>
-          <a class="btn" href="https://gitfront.io/r/jlyle2/bzpoE8yxvYa6/HouseMate-Frontend/" target="_blank">Frontend
-            Code</a>
-          <a class="btn" href="https://gitfront.io/r/jlyle2/2r8VJF9JoVYs/HouseMate-Services/" target="_blank">Services
-            Code</a>
+          <a class="btn" href="https://gitfront.io/r/jlyle2/bzpoE8yxvYa6/HouseMate-Frontend/" target="_blank">Frontend Code</a>
+          <a class="btn" href="https://gitfront.io/r/jlyle2/2r8VJF9JoVYs/HouseMate-Services/" target="_blank">Services Code</a>
+        </div>
+        <div style="display: flex; gap: 15px; justify-content: center; align-items: center; margin: 15px 0;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" title="React Native" width="40" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js" width="40" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" title="MongoDB" width="40" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis" title="Redis" width="40" />
         </div>
       </div>
     </section>
@@ -214,6 +216,15 @@
           and Python, and have a proven record in improving system performance and integrating innovative features like
           AI-powered data processing.</p>
       </div>
+    </section>
+    <section id="highlights">
+      <h2>Professional Highlights</h2>
+      <ul style="padding-left: 20px;">
+        <li><strong>Alcon:</strong> Delivered production-grade features in React + Kotlin + Node.js microservices across MongoDB, Redis, AWS, and SQS</li>
+        <li><strong>Ambassador:</strong> Resolved complex frontend bugs and improved system stability in a JavaScript web app</li>
+        <li><strong>Deskvana:</strong> Built a custom Slack app with a Node.js REST API, and maintained a React frontend</li>
+        <li><strong>Clarus:</strong> Delivered custom JavaScript CRM plugins, web resources, and automated workflows for enterprise clients</li>
+      </ul>
     </section>
     <section id="resume">
       <h2>Resume</h2>
