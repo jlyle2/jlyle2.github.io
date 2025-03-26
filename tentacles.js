@@ -186,5 +186,5 @@ function getDiameter(windowWidth) {
 }
 
 function getNatureSpeed(windowWidth) {
-  return max(3, min(7, windowWidth / 100))
+  return max(2, min(7, windowWidth / 100))
 }
